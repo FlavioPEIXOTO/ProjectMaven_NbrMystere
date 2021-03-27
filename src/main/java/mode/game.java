@@ -5,37 +5,35 @@ import java.util.Scanner;
 
 public class game {
     int choice;
+    
     Scanner sc = new Scanner(System.in);
     
     int start = 1;
     int result = 9999;
     int nbressais = 0;
+    int essais = 10;
     int mystere;
     
     int mode = 0;
     
-    
- /*   public game()
-    {
-       
-    }*/
-    
     public void my_menu() {
-         System.out.println("1 for Player, 2 for IA, 3 for Menu");
+         System.out.println("[1] Mode Solo -- [2] Mode IA -- [3] Retour au menu");
 
          choice = sc.nextInt();
          switch (choice) {
          case 1:
-             mode1();
+        	 System.out.println("Vous avez choisi le mode Solo");
+        	 Solo_Mode s = new Solo_Mode();
+             s.mode1();
              break;
          case 2:
-         	System.out.println("case 2 : IA");
+        	 System.out.println("Vous avez choisi le mode IA");
              IA_Mode i = new IA_Mode();
              i.PlayerChoice();
-             System.out.println("fin case 2 : IA");
              break;
          case 3:
              menu m = new menu();
+             m.main(null);
              break;
          default :
              System.out.println("Merci de saisir une valeur demandé.");
@@ -44,6 +42,7 @@ public class game {
     }
     
     public void Rejouer() {
+    	System.out.println("[1] Rejouer -- [2] Retour au menu -- [3] Quitter le jeu");
         choice = sc.nextInt();
         
         switch (choice) 
@@ -51,15 +50,17 @@ public class game {
             case 1:
                 if(mode == 1) {
                 	System.out.println("Rejouer au mode solo");
-                	mode1();
+                	Solo_Mode s = new Solo_Mode();
+                	s.mode1();
                 }
                 else if (mode == 2) {
                 	System.out.println("Rejouer au mode IA");
-                	//mode2();
+                	IA_Mode i = new IA_Mode();
+                	i.mode2();
                 }
                 break;
             case 2:
-                menu m = new menu();
+                my_menu();
                 break;
             case 3:
                 System.exit(0);
@@ -70,44 +71,20 @@ public class game {
         }
     }
     
-//Premier mode de jeu
-    public void mode1(){
+    @Override
+    public String toString() {
+    	StringBuilder sb = new StringBuilder();
+    	sb.append("Affichage du help \n \n");
     	
-    	start = 1;
-    	result = 1000;
-    	nbressais = 0;
-    	mode = 1;
+    	//Explication mode solo
+    	sb.append("Mode solo : \n Une IA vous choisira un nombre mystere au hasard entre ").append(start).append(" et ").append(result).append("\n Vous aurez ").append(nbressais +10).append(" essais pour trouver ce nombre mystere et à chaque tour vous entrerez les valeurs comme les exemples suivants : \n");
+    	sb.append("0002 / 0049 / 0490 / 7483 --> Tout vos nombre doivent avoir 4 chiffres \n ~~~~~~~~~~ \n");
     	
-	    System.out.println("Hello player");
-		Random rnd = new Random();
-		mystere = rnd.nextInt(result);
-		int nbrjoueur = -1;
-		while (nbrjoueur != mystere && nbressais < 10)
-		{
-		  System.out.println("Votre nombres de [" + start + " à " + result + "] ? ");
-		  nbrjoueur = sc.nextInt();
-		  if (nbrjoueur < mystere)
-		  {
-		    System.out.println("Trop petit");
-		    start = nbrjoueur + 1;
-		  }
-		  else if (nbrjoueur > mystere)
-		  {
-		    System.out.println("Trop grand");
-		    result = nbrjoueur - 1;
-		  }
-		  else 
-		  {
-			System.out.println("Félicitations !!! ");
-		    System.out.println("Trouve en " + nbressais + " essais");
-		    System.out.println("Plusieurs choix s'offre à vous : 1 for play again - 2 for menu - 3 for exit");
-		    Rejouer();
-		    break;
-		  }
-		  ++nbressais;
-		} //end of while
-	//end of mode 1 
-	}
+    	//Explication mode IA
+    	sb.append("Mode IA : \n Vous devrez dans un premier temps choisir un nombre mystere entre ").append(start).append(" et ").append(result).append(" , l'IA par la suite essaiera de le trouver en ").append(nbressais).append(" essais \n \n");
+    	
+    	return sb.toString();
+    }
 
     //end of class game
 }
