@@ -12,6 +12,10 @@ public class menu {
         System.out.println("Que souhaitez-vous faire : ");
         Scanner sc = new Scanner(System.in);
         
+		/*
+		 * Test dans le cas où le joueur rentre un caractères
+		 * autre qu'un nombre entier
+		 */
         try {
             choice = sc.nextInt();
             switch (choice) {

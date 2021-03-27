@@ -7,6 +7,9 @@ public class Solo_Mode extends game {
 	int nbrjoueur = -1;
 	String nbrjoueur_inString = "";
 	
+	/*
+	 * Vérifie si le joueur à rentrer 4 caractères 
+	 */
 	public void VerifNumberChoice() {
     	
     	int length = nbrjoueur_inString.length();
@@ -22,7 +25,9 @@ public class Solo_Mode extends game {
 	//Premier mode de jeu
     public void mode1(){
     	
+    	//valeur min
     	start = 1;
+    	//valeur max
     	result = 9999;
     	nbressais = 0;
     	mode = 1;
@@ -36,6 +41,10 @@ public class Solo_Mode extends game {
 		  nbrjoueur_inString = sc.nextLine();
 		  VerifNumberChoice();
 
+		  /*
+		   * Test dans le cas où le joueur rentre un caractères
+		   * autre qu'un nombre entier
+		   */
 		  try {
 			  nbrjoueur = Integer.parseInt(nbrjoueur_inString);
 		  }catch(Exception e) {
@@ -62,11 +71,17 @@ public class Solo_Mode extends game {
 		    Rejouer();
 		    break;
 		  }
+		  System.out.println(essais-1 - nbressais + " nombres d'essais restants");
 		  ++nbressais;
-		  System.out.println("Nbressais : " + nbressais);
-		} //end of while
-		System.out.println("Vous êtes à cours d'essais, vous avez PERDU !");
-		Rejouer();
+		    if (nbressais == 10)
+		    {
+		    	System.out.println("Tu n'as plus de tentative");
+				Rejouer();
+		    }
+		    
+		  //end of while
+		} 
+		
 	//end of mode 1 
 	}
 }
