@@ -4,6 +4,7 @@ import java.util.Scanner;
 
 public class menu {
 
+	//Menu principal permettant de lancer le jeu, lire l'aide au jeu ou le fermer
     public static void main(String[] args) {
         System.out.println("		<Bienvenue au nombre mystère !>		  ");
         int choice;
@@ -12,6 +13,10 @@ public class menu {
         System.out.println("Que souhaitez-vous faire : ");
         Scanner sc = new Scanner(System.in);
         
+		/*
+		 * Test dans le cas où le joueur rentre un caractères
+		 * autre qu'un nombre entier
+		 */
         try {
             choice = sc.nextInt();
             switch (choice) {
@@ -21,7 +26,7 @@ public class menu {
                 game g = new game();
                 g.my_menu();
                 break;
-            case 2:
+            case 2:	//Affichage de l'aide
                 System.out.println("Choix : " + choice);
                 game g_help = new game();
                 System.out.println(g_help.toString());
@@ -29,6 +34,7 @@ public class menu {
                 m.main(args);
                 break;
             case 3:
+            	//Arret du jeu
                 System.out.println("Choix : " + choice);
                 System.out.println("Fermeture du jeu");
                 System.exit(0);

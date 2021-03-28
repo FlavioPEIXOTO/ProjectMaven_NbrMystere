@@ -16,31 +16,43 @@ public class game {
     
     int mode = 0;
     
+    //Fonction de choix mode de jeu solo ou IA
     public void my_menu() {
-         System.out.println("[1] Mode Solo -- [2] Mode IA -- [3] Retour au menu");
+         System.out.println("[1] Mode Solo -- [2] Mode IA -- [3] Retour au menu principal");
 
-         choice = sc.nextInt();
-         switch (choice) {
-         case 1:
-        	 System.out.println("Vous avez choisi le mode Solo");
-        	 Solo_Mode s = new Solo_Mode();
-             s.mode1();
-             break;
-         case 2:
-        	 System.out.println("Vous avez choisi le mode IA");
-             IA_Mode i = new IA_Mode();
-             i.PlayerChoice();
-             break;
-         case 3:
-             menu m = new menu();
-             m.main(null);
-             break;
-         default :
-             System.out.println("Merci de saisir une valeur demandé.");
-             break;
+         try 
+         {
+	         choice = sc.nextInt();
+	         switch (choice) {
+	         case 1:	//Lancement mode de jeu solo
+	        	 System.out.println("Vous avez choisi le mode Solo");
+	        	 Solo_Mode s = new Solo_Mode();
+	             s.mode1();
+	             break;
+	         case 2:	//Lancement mode de jeu IA
+	        	 System.out.println("Vous avez choisi le mode IA");
+	             IA_Mode i = new IA_Mode();
+	             i.PlayerChoice();
+	             break;
+	         case 3:	//Retour au menu principal
+	             menu m = new menu();
+	             m.main(null);
+	             break;
+	         default :
+	             System.out.println("Merci de saisir une valeur demandé.");
+	             break;
+	         }
+         } catch(Exception e) {
+         	System.out.println("Vous n'avez pas rentré un des choix proposé, réessayez !");
+         	System.out.println("	~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~	");
+            my_menu();
          }
     }
     
+    /*
+     * Permet au joueur en fin de partie 
+     * de rejouer, de revenir au menu ou de quitter
+     */
     public void Rejouer() {
     	System.out.println("[1] Rejouer -- [2] Retour au menu -- [3] Quitter le jeu");
         choice = sc.nextInt();
@@ -69,6 +81,8 @@ public class game {
                 System.out.println("Merci de saisir une valeur demandé.");
                 break;
         }
+        
+     // end of rejouer()
     }
     
     @Override

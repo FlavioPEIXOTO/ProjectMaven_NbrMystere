@@ -8,6 +8,7 @@ public class IA_Mode extends game {
 	int nbr_IA = -1;
 	int result_ecart;
 	
+	//Fonction de choix du nombre mystere de l'utilisteur pour l'IA
 	public void PlayerChoice(){
 		try {
 			System.out.println("Choisissez un nombre mystere et l'IA tentera de vous le dévoile en 10 essais :)");
@@ -23,6 +24,7 @@ public class IA_Mode extends game {
 		}
 	}
 	
+	//Verification de la distance d'intervalle du nombre améliorant la recherche de l'IA
 	public void verif() {
 		int ecart;
 		
@@ -64,6 +66,7 @@ public class IA_Mode extends game {
 		}
 	}
 	
+	//Fonction de lancement du mode de jeu 2, recherche du nombre mystere par l'IA
 	public void mode2() {
 		System.out.println("Vous commencez le mode 2");
 		mode = 2;

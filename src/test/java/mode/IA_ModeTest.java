@@ -35,4 +35,19 @@ public class IA_ModeTest {
 		//Assert
 		assertEquals(5000, res);
 	}*/
+	
+	/*
+	@Test
+	public void PlayerChoice() {
+		//Arange 		
+		IA_Mode i = new IA_Mode();
+		i.mystere = 5000;
+		
+		//Act
+		i.PlayerChoice();
+		
+		//Assert
+		
+	}
+	*/
 }
